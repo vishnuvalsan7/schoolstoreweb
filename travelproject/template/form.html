@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Verification</title>
+</head>
+<body>
+
+<div class="container mt-5">
+  <form id="myForm" action="/" method="post" onsubmit="return validateForm()">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="DOB">DOB:</label>
+      <input type="date" class="form-control" id="DOB" name="DOB" placeholder="DOB" required>
+    </div>
+
+    <div class="form-group">
+      <label for="AGE">Age:</label>
+      <input type="number" class="form-control" id="AGE" name="AGE" placeholder="Age" required>
+    </div>
+
+    <div class="form-group">
+      <label>Gender:</label>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="male" name="gender" required>
+        <label class="form-check-label" for="male">Male</label>
+      </div>
+      <div class="form-check">
+        <input type="radio" class="form-check-input" id="female" name="gender" required>
+        <label class="form-check-label" for="female">Female</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phonenumber">Phone Number:</label>
+      <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="Phone Number" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<script>
+    // Function to validate the form before submission
+    function validateForm() {
+        // Check if the required fields are filled
+        var nameField = document.getElementById("name").value;
+        var dobField = document.getElementById("DOB").value;
+        var ageField = document.getElementById("AGE").value;
+        var genderMale = document.getElementById("male").checked;
+        var genderFemale = document.getElementById("female").checked;
+        var phoneNumberField = document.getElementById("phonenumber").value;
+        var emailField = document.getElementById("email").value;
+        var addressField = document.getElementById("address").value;
+
+        // Add your custom validation logic here
+        if (
+            nameField.trim() === "" ||
+            dobField.trim() === "" ||
+            ageField.trim() === "" ||
+            !(genderMale || genderFemale) ||
+            phoneNumberField.trim() === "" ||
+            emailField.trim() === "" ||
+            addressField.trim() === ""
+        ) {
+            alert("Please fill out all required fields.");
+            return false; // Prevent form submission
+        }
+
+        // Additional validation logic can be added as needed
+
+        // If all validation passes, allow form submission
+        return true;
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+<!--<form action="/" method="post">-->
+<!--  {% csrf_token %}-->
+<!--  <input type="text" name="name" placeholder="Name"><br>-->
+<!--  <input type="text" name="DOB" placeholder="DOB"><br>-->
+<!--  <input type="text" name="AGE" placeholder="Age"><br>-->
+<!--  <input type="radio" name="gender"> <label>male</label> <input type="radio" name="gender"> <label>female<br>-->
+<!--  <input type="tel" name="phonenumber" placeholder="ph number"><br>-->
+<!--  <input type="email" name="email" placeholder="email"><br>-->
+<!--  <input type="text" name="address" placeholder="address"><br>-->
+<!--  <input type="submit">-->
+<!--</form>-->
